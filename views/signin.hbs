@@ -1,0 +1,25 @@
+
+    <h1>Sign In</h1>
+{{# if messages.error }}
+    {{ messages.error }}
+{{/if}}
+<div class="row justify-content-center">
+<div class="col-md-6">Sometimes it is easy to forget all the good things that happen in a day.
+    Keeping a track of everything positive can be a great way to boost your outlook or maintain
+    discipline when a project gets difficult. Use our app to check up on yourself and record
+    all the small things that went well today. 
+     </div>
+<form action="/signin" method="POST">
+<div class="form-group center-block">
+    <div class="form-row">
+        <label for="email">Email: </label>
+        <input class='form-control' type="text" id='email' name='email' required>
+    </div>
+    <div class="form-row">
+        <label for="password">Password: </label>
+        <input class='form-control' type="text" id='password' name='password' required>
+    </div>
+    <button class='btn btn-primary center' type='submit'>Sign In</button>
+    <a  href="/signup"><u>Sign Up</u></a>
+    </form>
+</div>

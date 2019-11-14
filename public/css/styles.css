@@ -1,0 +1,25 @@
+nav, nav a { 
+    background-color: purple;
+    color: white
+}
+
+a {
+    color: white
+}
+
+body {
+    background: rgb(132, 0, 255);
+    color: white;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+button {
+    margin: 5px
+}
+
+h1 {
+    text-align: center;
+    padding: 10px;
+    margin: 20px auto
+}
+
