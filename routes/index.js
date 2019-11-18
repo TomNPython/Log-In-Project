@@ -1,8 +1,11 @@
 const express = require('express');
 const app = express.Router();
 const bcrypt = require('bcrypt');
-const passport = require('passport')
+const passport = require('passport');
+const mongoose = require('mongoose');
+const User = require('../models/user')
 
+mongoose.connect('mongodb://localhost/test', {useNewUrlParser: true})
 
 let users = []; //replace with database connection later
 
@@ -18,9 +21,21 @@ app.get('/signup', isNotLoggedIn, (req, res) => {
     res.render('signup.hbs')
 });
 
+//change users.push to database add
 app.post('/signup', isNotLoggedIn, async (req, res) => {
     try {
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
+        let newUser = new User({
+            name: req.body.name,
+            email: req.body.email,
+            password: hashedPassword
+        })
+        newUser.save(function(err) {
+            if (err) {
+                return err
+            }
+        })
+
         users.push({
             id: Date.now().toString(), // can remove when connect database
             name: req.body.name,
@@ -36,6 +51,7 @@ app.post('/signup', isNotLoggedIn, async (req, res) => {
     console.log(users)
 })
 
+//change 'local' to array of different login strategies
 app.post('/signin', isNotLoggedIn, passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/signin',

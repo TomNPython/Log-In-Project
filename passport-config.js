@@ -1,4 +1,5 @@
 const LocalStrategy = require('passport-local').Strategy;
+// add other log in strategies here!!
 const bcrypt = require('bcrypt')
 
 
@@ -19,6 +20,7 @@ function initialise(passport, getUserByEmail, getUserById) {
         catch(err) {
             return done(err)
         }
+        
     }
     passport.use(new LocalStrategy({
         usernameField: 'email' //password is done by default
@@ -27,5 +29,7 @@ function initialise(passport, getUserByEmail, getUserById) {
     passport.deserializeUser((id, done) => {
         return done(null, getUserById(id))})
 };
+
+//extra strategies go here?
 
 module.exports = initialise
